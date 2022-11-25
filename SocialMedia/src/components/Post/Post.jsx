@@ -1,19 +1,20 @@
 import React,{useEffect, useRef} from 'react'
 import './Post.css'
 
-import Comment from '../../img/comment.png'
+//import Comment from '../../img/comment.png'
 // import Share from '../../img/share.png'
 import Download from '../../img/download.png'
 import Completed from '../../img/completed.png'
 import Heart from '../../img/like.png'
 import NotLike from '../../img/notlike.png'
 import Delete from '../../img/delete.png'
-
+import DateFormatter from '../../utils/DateFormatter'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import { likePost } from '../../api/PostRequest'
 // import {deletePost} from '../../api/PostRequest'
 import { deletePost } from "../../action/uploadAction";
+import { getComments } from '../../api/PostRequest'
 import  { useDispatch } from 'react-redux'
 import { getUser, savePost } from '../../api/UserRequest'
 import {
@@ -21,8 +22,8 @@ import {
   IconButton,
  
 } from "@mui/material";
-import { Favorite, FavoriteBorder } from "@mui/icons-material";
-
+import { Favorite, FavoriteBorder , Comment } from "@mui/icons-material";
+import Comments from "../Comments/Comments"
 
 const Post = ({data,userId}) => {
   const {user} = useSelector((state)=> state.authReducer.authData);
@@ -66,6 +67,15 @@ const handleSave =(postId,userId)=>{
   // setSave((prev)=> !prev)
   
 }
+const [commentOpen, setCommentOpen] = useState(false);
+const [comment, setComment] = useState()
+const handleComment = async() => {
+ if(!commentOpen){
+    const comments = await getComments(data?._id)
+    setComment(comments.data)
+  }
+    setCommentOpen(!commentOpen)
+  }
 
 
   return (
@@ -77,22 +87,29 @@ const handleSave =(postId,userId)=>{
             <span style={{paddingLeft:"10px"}}>{data.user[0]?.firstname+" "+data.user[0]?.lastname} </span> 
         </div>
     </div>
+    {<time><DateFormatter date={data?.createdAt} /></time>}
     <img src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""} alt=""  />
-
+    <div className="details">
+       
+       <span> {data.desc}</span>
+   </div>
     <div className="postReact">
     <IconButton aria-label="add to favorites" onClick={handleLike}  title="New Post">
         
        
         <Checkbox 
+        style={{marginTop:-10}}
         {...liked ? (
         {checked:true }) : ({checked:false} )}
           icon={<FavoriteBorder />}
           checkedIcon={<Favorite sx={{ color: "red" }} />}
         /> 
-        <span style={{fontSize: 12}}> {likes} likes</span>
+        <span style={{fontSize: 12,marginTop:-10}}> {likes} likes</span>
        
       </IconButton>
-        <img src={Comment} alt="" />
+      <IconButton aria-label="comment" onClick={ handleComment }>
+          <Comment />
+        </IconButton>
 
        {
         user._id === data.userId?'':<img src={saved?Completed:Download}style={{width:"25px",height:"25px"}} onClick={() => handleSave(data._id,user._id)} alt="" />
@@ -104,10 +121,7 @@ const handleSave =(postId,userId)=>{
         onClick={()=> handleDelete(data._id,ref)} />:"" }
         
     </div>
-    <div className="details">
-        <span><b> {data.name}</b></span>
-        <span> {data.desc}</span>
-    </div>
+    {commentOpen && <Comments post={comment} data={data} handleComment={handleComment} />}
 
     </div>
   )

@@ -6,7 +6,7 @@ import {getUser} from '../../api/UserRequest.js'
 
 const Conversation = ({data,currentUser}) => {
   console.log(currentUser);
-
+console.log(data);
     const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
     const [userData,setUserData] = useState(null)
    console.log(5667);

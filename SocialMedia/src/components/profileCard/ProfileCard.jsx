@@ -15,7 +15,7 @@ const ProfileCard = ({location,handleSavePost}) => {
     // user posts
     useEffect(()=>{
         const posts = async() =>{
-            const {data} = await getTimelinePostsUser(user._id);
+            const {data} = await getTimelinePostsUser();
             setUserPosts(data)
             // console.log(data,"profile");
     
@@ -68,7 +68,7 @@ const ProfileCard = ({location,handleSavePost}) => {
         <hr />
     </div>
     {location === 'profilePage'? '': <span>
-        <Link style={{textDecoration :"none",color:"inherit"}} to={`/profile/${user._id}`}>
+        <Link style={{textDecoration :"none",color:"inherit"}} to={`/profile`}>
 
         My Profile </Link></span>}
         

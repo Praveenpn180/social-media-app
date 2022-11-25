@@ -57,7 +57,7 @@ const MobileMenu = styled(MenuIcon)(({ theme }) => ({
   export default function Navbar() {
     const [open, setOpen] = useState(false);
     const navigate=useNavigate()
-
+    const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
     const dispatch=useDispatch()
     const {user} = useSelector((state) => state.authReducer.authData)
 
@@ -82,7 +82,7 @@ const MobileMenu = styled(MenuIcon)(({ theme }) => ({
             
             <Avatar
               sx={{ width: 30, height: 30 }}
-              src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              src={user.profilePicture ? serverPublic + user.profilePicture : serverPublic + "profile.png"}
              
             />
              <Typography variant="span">{user.firstname}</Typography>
@@ -91,7 +91,7 @@ const MobileMenu = styled(MenuIcon)(({ theme }) => ({
   justifyContent: "space-between",}}>
             <Avatar
               sx={{ width: 30, height: 30 }}
-              src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              src={user.profilePicture ? serverPublic + user.profilePicture : serverPublic + "profile.png"}
             />
             <Typography variant="span">{user.firstName}</Typography>
           </UserBox>

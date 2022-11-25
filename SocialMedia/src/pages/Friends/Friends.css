@@ -1,0 +1,9 @@
+.friends{
+    position: relative;
+    display: grid;
+    grid-template-columns: 15rem auto 20rem;
+    gap: 1rem;
+}
+.people{
+    margin-top: 80px;
+}

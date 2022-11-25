@@ -24,3 +24,4 @@ export const unFollowUser = (id,data) => API.put(`/user/${id}/unfollow`,data)
 
 export const savePost = (postId,userId) => API.put(`/savepost/${postId}/${userId}`)
 
+export const getFriends = (userId) => API.get(`/user/friends/${userId}`)

@@ -53,7 +53,7 @@ const RightSide = () => {
        
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton component="a" href="#simple-list">
+          <ListItemButton component="a" href="/friends">
             <ListItemIcon>
               <Person />
             </ListItemIcon>
@@ -62,7 +62,7 @@ const RightSide = () => {
         </ListItem>
        
         <ListItem disablePadding>
-          <ListItemButton component="a" href="/profile/${user._id}">
+          <ListItemButton component="a" href="/profile">
             <ListItemIcon>
               <AccountBox />
             </ListItemIcon>

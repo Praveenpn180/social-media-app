@@ -45,8 +45,9 @@ const Chat = () => {
     const getChats = async () => {
       try {
         const { data } = await userChats(user._id)
+
         setChats(data)
-        // console.log(data);
+       
       } catch (error) {
         console.log(error);
       }

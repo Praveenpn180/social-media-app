@@ -2,7 +2,6 @@ import PostModel from "../Models/postModal.js";
 import mongoose from "mongoose";
 import UserModel from "../Models/userModel.js"
 
-
 // create new post
 
 export const createPost = async(req,res)=>{
@@ -155,6 +154,7 @@ export const getAllPost = async(req,res) =>{
     try {
         let posts = await PostModel.find()
         .populate("user")
+        .sort({createdAt:-1})
         res.status(200).json(posts)
     } catch (error) {
         res.status(500).json(error)
@@ -176,3 +176,4 @@ export const getTimelinePostsUser = async(req,res) =>{
         res.status(500).json(error)
     }
 }
+

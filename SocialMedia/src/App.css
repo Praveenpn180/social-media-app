@@ -29,7 +29,7 @@
 .App{
   overflow: hidden;
   color: var(--black);
-  background:#f3f3f3;
+  background:white;
   padding: 1rem 1rem;
   /* grid-template-columns: 12rem auto 20rem; */
 

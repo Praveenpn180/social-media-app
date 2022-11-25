@@ -93,7 +93,8 @@ const handleSubmit = (e) =>{
             name='firstname'
              placeholder='First Name' 
              onChange={handleChange}
-             value ={formData.firstName}
+             value ={formData.firstname}
+             disabled
              />
 
             <input type="text"
@@ -101,7 +102,8 @@ const handleSubmit = (e) =>{
               name='lastname'
                placeholder='Last Name'
                onChange={handleChange}
-               value ={formData.lastName}
+               value ={formData.lastname}
+               disabled
                />
 
         </div>

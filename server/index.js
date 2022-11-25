@@ -9,7 +9,7 @@ import PostRoute from './Routes/PostRoute.js';
 import UploadRoute from './Routes/UploadRoute.js'
 import ChatRoute from './Routes/ChatRoute.js'
 import MessageRoute from './Routes/MessageRoute.js'
-
+import CommentRoute from './Routes/CommentRoute.js'
 // Routes
 
 const app = express()
@@ -44,5 +44,5 @@ app.use('/message',MessageRoute)
 app.use('/posts',PostRoute)
 app.use('/savepost',UserRoute)
 app.use('/savedpost',PostRoute)
-
+app.use('/comment',CommentRoute)
 

@@ -8,6 +8,7 @@ import { Admin } from "./pages/AdminD/Admin";
 import UserManagement from "./pages/UserManagement/UserManagement";
 import PostsManagement from "./pages/PostsManagement/PostsManagement";
 import Chat from "./pages/Chat/Chat.js";
+import { Friends } from "./pages/Friends/Friends";
 
 function App() {
 
@@ -30,7 +31,8 @@ function App() {
         <Route path="/home" element={user ? (admin ? <Admin /> : <Home />) : <Navigate to="../auth" />} />
         <Route path="/admin" element={admin ? <Admin /> : <Navigate to="../auth" />} />
         <Route path="/auth" element={user ? <Navigate to="../home" /> : <Auth />} />
-        <Route path="/profile/:id" element={user ? <Profile /> : <Navigate to="../auth" />} />
+        <Route path="/profile" element={user ? <Profile /> : <Navigate to="../auth" />} />
+        <Route path="/friends" element={user ? <Friends /> : <Navigate to="../auth" />} />
 
          <Route path="/admin/user" element={user ? (admin ? <UserManagement /> : <Admin />) : <Navigate to="../auth" />} />
         <Route path="/post" element={user ? (admin ? <PostsManagement /> : <Admin />) : <Navigate to="../auth" />} />

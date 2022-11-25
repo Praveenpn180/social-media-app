@@ -8,7 +8,7 @@ import InputEmoji from 'react-input-emoji'
 import { useRef } from 'react'
 
 const ChatBox = ({ chat, currentUser,setSendMessage,receivedMessage }) => {
-    
+  console.log(chat);
 
     const [userData, setUserData] = useState(null)
     const [messages,setMessages] = useState([])
@@ -25,7 +25,9 @@ const ChatBox = ({ chat, currentUser,setSendMessage,receivedMessage }) => {
         const userId = chat?.members?.find((id) => id !== currentUser)
         const getUserData = async () => {
             try {
+             
                 const { data } = await getUser(userId)
+               
                 setUserData(data)
                
                
