@@ -11,7 +11,10 @@ API.interceptors.request.use((req) => {
 
 export const getUser = (userId) => API.get(`/user/${userId}`)
 
-export const updateUser = (id,formData) => API.put(`/user/${id}`,formData)
+export const updateUser = (id,formData) =>{
+  console.log(id);
+  API.put(`/user/${id}`,formData)
+} 
 
 
 export const updateUserAdmin = (id,formData) => API.put(`/admin/user/${id}`,formData)

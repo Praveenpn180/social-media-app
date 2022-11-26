@@ -17,12 +17,12 @@ export default function Validate(values){
 
    if(!values.password.trim()){
     errors.password="Password is required"
-   }else if(values.password.length > 4 ){
+   }else if(values.password.length < 4 ){
     errors.password="Password must be 4 characters"
    }
    if(!values.confirmpass.trim()){
     errors.confirmpass="Password is required"
-   }else if(values.confirmpass.length > 4){
+   }else if(values.confirmpass.length < 4){
     errors.confirmpass="Password must be 4 characters"
    }
    return errors;

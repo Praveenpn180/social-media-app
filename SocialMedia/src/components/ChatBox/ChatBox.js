@@ -46,7 +46,6 @@ useEffect(()=>{
             const {data} = await getMessages(chat._id)
             
             setMessages(data)
-            // console.log(data,"kkk");
         } catch (error) {
             console.log(error);
         }

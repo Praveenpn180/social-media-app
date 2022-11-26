@@ -72,22 +72,10 @@ const Chat = () => {
     );
   }, []);
 
-
-  // //online status
-  // const checkOnlineStatus = (chat) =>{
-  //   const chatMember = chat.members.find((member)=> member !== user._id)
-  //   const online = onlineUsers.find((user) => user.userId ===chatMember)
-
-  //   return online?true : false
-  // }
-
   return (
 
     <div className="Chat">
       <Navbar/>
-      {/* left Side */}
-
-      {/* Left Side */}
       <div className="Left-side-chat">
         <LogoSearch />
         <div className="Chat-container">
@@ -100,7 +88,6 @@ const Chat = () => {
                 <Conversation
                   data={chat}
                   currentUser={user._id}
-                //  online ={checkOnlineStatus(chat)}
                 />
               </div>
             ))}

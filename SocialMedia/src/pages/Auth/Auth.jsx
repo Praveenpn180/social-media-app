@@ -1,6 +1,6 @@
 import React from 'react'
 import './Auth.css'
-import Logo from '../../img/logo.png'
+import Zlogo from '../../img/Zlogo.jpg'
 import { useState } from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import { logIn, signUp } from '../../action/AuthAction'
@@ -48,9 +48,9 @@ const resetForm = () =>{
     <div className="Auth">
       {/* left side  */}
         <div className="a-left">
-            <img src={Logo} alt="" />
+            <img src={Zlogo} alt="" />
             <div className="Webname">
-                <h1>Connect</h1>
+                <h1>Zango Connect</h1>
                 <h6>Explore the ideas throughout the world</h6>
             </div>
         </div>
@@ -128,7 +128,7 @@ const resetForm = () =>{
               alignSelf:"flex-end",
               marginRight:"5px"}}>
 
-                * confirm password not same
+                * confirm password donot match
 
               </span>
               <div>
