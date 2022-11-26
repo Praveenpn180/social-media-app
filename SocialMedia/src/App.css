@@ -45,7 +45,7 @@
 .button:hover{
   cursor: pointer;
   color: var(--orange);
-  background: transparent;
+  background: rgb(100, 29, 29);
   border: 2px solid var(--orange);
 
 }

@@ -25,5 +25,11 @@ export default function Validate(values){
    }else if(values.confirmpass.length < 4){
     errors.confirmpass="Password must be 4 characters"
    }
+   if(!values.phone.trim()){
+    errors.phone="Phone Number is required"
+   }else if(values.phone.length < 10||values.phone.length>10){
+    errors.phone="Phone number must be 10 digit"
+   }
+  
    return errors;
 }

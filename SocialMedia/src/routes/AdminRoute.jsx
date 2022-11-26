@@ -15,10 +15,10 @@ export const AdminRoute = () => {
   return (
         <>
       <Routes>
-      <Route path="/post" element={user ? (admin ? <PostsManagement /> : <Admin />) : <Navigate to="../auth" />} />
-        <Route path="/" element={admin ? <Admin /> : <Navigate to="../auth" />} />
-         <Route path="/user" element={user ? (admin ? <UserManagement /> : <Admin />) : <Navigate to="../auth" />} />
-        <Route path="/analytics" element={user ? (admin ? <PostsManagement /> : <Admin />) : <Navigate to="../auth" />} />
+      <Route path="/admin/post" element={user ? (admin ? <PostsManagement /> : <Admin />) : <Navigate to="../login" />} />
+        <Route path="/admin" element={admin ? <Admin /> : <Navigate to="../login" />} />
+         <Route path="/admin/user" element={user ? (admin ? <UserManagement /> : <Admin />) : <Navigate to="../login" />} />
+        <Route path="/admin/analytics" element={user ? (admin ? <PostsManagement /> : <Admin />) : <Navigate to="../login" />} />
     </Routes>
     </>
   )
