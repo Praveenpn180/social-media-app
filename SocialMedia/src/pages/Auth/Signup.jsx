@@ -5,7 +5,6 @@ import Zlogo from '../../img/Zlogo.jpg'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { signUp } from '../../action/AuthAction'
-import Validate from '../../Validation/Validation'
 import { Link } from 'react-router-dom'
 import OtpModal from '../../components/OtpModal/OtpModal'
 const Signup = () => {
@@ -13,27 +12,20 @@ const Signup = () => {
   const dispatch = useDispatch()
   const loading = useSelector((state) => state.authReducer.loading)
   const [modalOpened,setModalOpened] = useState(false)
-  const [data, setData] = useState({ firstname: "", lastname: "", password: "", confirmpass: "", username: "" })
-  const [err, setErr] = useState({})
-
-  //password check
-  const [confirmPass, setConfirmPass] = useState(true)
-
-  const handleChange = (e) => {
-    // const {name,value} = e.target
-    setData({ ...data, [e.target.name]: e.target.value })
-  }
-
+  const [data, setData] = useState({ firstName: "", lastName: "", password: "", confirmpass: "", email: "", phone:null })
+  
 
   const onSubmit = async (data) => {
-    const { firstName, lastName, Email, phone, password } = data
+    
+    const { firstName, lastName, email, phone, password } = data
     const userData = { firstName, lastName, email, phone, password }
     console.log(userData);
-    dispatch(userRegister(userData))
+    setModalOpened(true)
+    dispatch(signUp(userData))
     
   }
 
-  }
+  
 
 
 
@@ -99,6 +91,7 @@ const Signup = () => {
               {...register('phone',
               {
                 required: 'Please enter phone number',
+            
                 minLength: { value: 10, message: 'Phone number must be 10 numbers' },
                 maxLength: { value: 10, message: 'Phone number cannot exceed more than 10 numbers' }
               })} />
@@ -154,10 +147,10 @@ const Signup = () => {
          
 
         </form>
-        <OtpModal modalOpened ={modalOpened} setModalOpened ={setModalOpened} num ={data?.phone?.slice(6)} />
+        <OtpModal modalOpened ={modalOpened} setModalOpened ={setModalOpened}  />
       </div>
     </div>
-  )
+  )}
 
 
 

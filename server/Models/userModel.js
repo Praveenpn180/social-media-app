@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const UserShema = mongoose.Schema(
     {
-        username : {
+        email : {
             type : String,
             required : true,
         },
@@ -12,12 +12,12 @@ const UserShema = mongoose.Schema(
             required : true,
         } ,
 
-        firstname :{
+        firstName :{
             type : String,
             required : true,
         },
 
-        lastname:{
+        lastName:{
             type : String,
             required : true,
         },
