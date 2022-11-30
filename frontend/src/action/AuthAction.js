@@ -26,13 +26,27 @@ export const signUp = (formData) => async(dispatch) => {
       try {
           const {data} = await AuthApi.signUp(formData)
           
-          dispatch({type :"AUTH_SUCCESS",data : data})
+         
           
   
       } catch (error) {
           console.log(error.response.data.message,"HHHHHHHHHHHH");
           alert(error.response.data.message)
           dispatch({type : "AUTH_FAIL"})
+      }
+  }
+
+  export const verifyOtp = (formData) => async(dispatch) => {
+    
+      try {
+          const {data} = await AuthApi.verifyOtp(formData)
+          
+          dispatch({type :"AUTH_SUCCESS",data : data})
+          
+      } catch (error) {
+          console.log(error.response.data.message,"HHHHHHHHHHHH");
+          alert(error.response.data.message)
+    
       }
   }
 

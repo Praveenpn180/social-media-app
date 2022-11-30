@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
     const dispatch = useDispatch()
     const loading = useSelector((state)=> state.authReducer.loading)
 
-    const [data,setData] = useState({firstname:"",lastname:"",password:"",confirmpass:"",username:""})
+    const [data,setData] = useState({password:"",email:""})
     const [err,setErr] = useState({})
   
     //password check
@@ -24,18 +24,11 @@ import { Link } from 'react-router-dom'
   
     const handleSubmit = (e)=>{
        
-      e.preventDefault();
-      setErr(Validate(data))
-  
         dispatch(logIn(data))
       }
     
   
-  // reset 
-  const resetForm = () =>{
-    setConfirmPass(true);
-    setData({firstname:"",lastname:"",password:"",confirmpass:"",username:""})
-  }
+
   
   return (
     <div className="Auth">
@@ -55,7 +48,7 @@ import { Link } from 'react-router-dom'
 
          <div className='validation'>
             <input type="text" placeholder='User Name'
-             className='infoInput passInput1' name='username' 
+             className='infoInput passInput1' name='email' 
              onChange={handleChange} value ={data.username} />
             
              {err.username && <p style={{color:"red"}}> {err.username}</p>}
@@ -96,7 +89,7 @@ import { Link } from 'react-router-dom'
                 
                 </span>
             </div>
-            <button className='button infoButton' type='submit' disabled={loading}>
+            <button className='button infoButton' type='submit' >
               {loading ? "Loading.." : "Login"}
             </button>
           </form>

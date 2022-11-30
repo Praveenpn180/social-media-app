@@ -12,14 +12,15 @@ const Signup = () => {
   const dispatch = useDispatch()
   const loading = useSelector((state) => state.authReducer.loading)
   const [modalOpened,setModalOpened] = useState(false)
-  const [data, setData] = useState({ firstName: "", lastName: "", password: "", confirmpass: "", email: "", phone:null })
-  
-
+const [num,setNum] = useState()
+const [datas,setDatas] = useState()
+let userData={}
   const onSubmit = async (data) => {
-    
+    setDatas(data)
     const { firstName, lastName, email, phone, password } = data
-    const userData = { firstName, lastName, email, phone, password }
+    userData = { firstName, lastName, email, phone, password }
     console.log(userData);
+    setNum(phone.slice(6))
     setModalOpened(true)
     dispatch(signUp(userData))
     
@@ -147,7 +148,7 @@ const Signup = () => {
          
 
         </form>
-        <OtpModal modalOpened ={modalOpened} setModalOpened ={setModalOpened}  />
+        <OtpModal modalOpened ={modalOpened} setModalOpened ={setModalOpened} num={num} userData={datas} setDatas={setDatas} />
       </div>
     </div>
   )}
