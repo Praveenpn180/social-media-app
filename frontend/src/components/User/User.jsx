@@ -25,9 +25,9 @@ const User = ({person}) => {
     <div>
         <img src={person.profilePicture ? serverPublic + person.profilePicture : serverPublic + "profile.png"} alt=""  className='followerImg'/>
         <div className="name">
-            <span>{person.firstname} <img src={followerss>=2?badge:""} alt="" style={{width:"15px",hieght:"20px"}}/></span>
+            <span>{person.firstName} <img src={followerss>=2?badge:""} alt="" style={{width:"15px",hieght:"20px"}}/></span>
            
-            <span>@{person.username}</span>
+            <span>@{person.email}</span>
         </div>
     </div>
     <button className={following ? 'button fc-button UnfollowButton' : "button fc-button"} onClick={handleFollow}>

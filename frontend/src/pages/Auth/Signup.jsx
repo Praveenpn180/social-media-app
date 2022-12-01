@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import './Auth.css'
 import Zlogo from '../../img/Zlogo.jpg'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { signUp } from '../../action/AuthAction'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import OtpModal from '../../components/OtpModal/OtpModal'
 const Signup = () => {
+  const navigate = useNavigate()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const dispatch = useDispatch()
   const loading = useSelector((state) => state.authReducer.loading)
@@ -25,8 +27,13 @@ let userData={}
     dispatch(signUp(userData))
     
   }
-
-  
+  const user = useSelector((state) => state?.authReducer?.authData)
+  useEffect(()=>{
+   
+      if(user){
+        navigate("/home")
+      }
+  })
 
 
 
@@ -140,8 +147,8 @@ let userData={}
 
           <div>
             
-          <button className='button infoButton' type='submit' disabled={loading}>
-            {loading ? "Loading.." : "Sign Up"}
+          <button className='button infoButton' type='submit' >
+            Sign Up
           </button>
             </div>
 

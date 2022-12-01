@@ -90,7 +90,7 @@ const submitComment = (comment) =>{
 
           </Avatar>
                 <div style={spans}>
-                    <span style={{ fontWeight: "500"}}>{c.userId?.firstname +" "+c.userId?.lastname}</span>
+                    <span style={{ fontWeight: "500"}}>{c.userId?.firstName +" "+c.userId?.lastName}</span>
                     <p>{c.comment}</p>
                 </div>
                 <span style={commentDate}>

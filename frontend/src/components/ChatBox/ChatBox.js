@@ -109,7 +109,7 @@ useEffect(()=>{
          alt="" className='followerImage' style={{width:"50px",hight:"50px"}}/>
                    <div className="name" style={{ fontSize: "0.9rem" }}>
                      <span>
-                       {userData?.firstname} {userData?.lastname}
+                       {userData?.firstname} {userData?.lastName}
                      </span>
                    </div>
                  </div>

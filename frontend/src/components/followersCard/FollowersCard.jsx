@@ -15,7 +15,7 @@ useEffect(()=>{
     const fetchPersons = async() =>{
         const {data} = await getAllUser();
         setPersons(data)
-        // console.log(data);
+        console.log(data);
 
     }
     fetchPersons()

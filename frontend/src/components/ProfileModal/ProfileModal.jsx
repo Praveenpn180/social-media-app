@@ -90,10 +90,10 @@ const handleSubmit = (e) =>{
         <div>
             <input type="text" 
             className="infoInput" 
-            name='firstname'
+            name='firstName'
              placeholder='First Name' 
              onChange={handleChange}
-             value ={formData.firstname}
+             value ={formData.firstName}
              disabled
              />
 
@@ -102,7 +102,7 @@ const handleSubmit = (e) =>{
               name='lastname'
                placeholder='Last Name'
                onChange={handleChange}
-               value ={formData.lastname}
+               value ={formData.lastName}
                disabled
                />
 

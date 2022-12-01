@@ -10,7 +10,6 @@ import Delete from '../../img/delete.png'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import { getPost, likePost } from '../../api/PostRequest'
-// import {deletePost} from '../../api/PostRequest'
 import { deletePost } from "../../action/uploadAction";
 import  { useDispatch } from 'react-redux'
 
@@ -19,11 +18,12 @@ import  { useDispatch } from 'react-redux'
 
 const TPost = ({data,userId,saveItem}) => {
 
-  console.log(data,userId,saveItem,"tpost");
+  console.log(data,"tpost");
 
   const ref = useRef(null);
   const dispatch = useDispatch()
   const {user} = useSelector((state)=> state.authReducer.authData);
+  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
   const [liked,setLiked] = useState(data.likes.includes(user._id))
   const [likes,setLikes] = useState(data.likes.length);
@@ -42,41 +42,21 @@ const handleDelete = (postId,ref) =>{
   ref.current.remove()
 }
 
-const getSavdedArray = user.savePost
-  // getSavdedArray.map((id)=>{
-  //   setPostId(id)
-  // })
 
-//   console.log(postId,"hello");
 
-// get user
 
-useEffect(()=>{
-  const post = async() =>{
-    getSavdedArray.map(async(id)=>{
-      
-      const {data} = await getPost(id,getSavdedArray);
-     setName(data)
-    })
-    
-
-  }
-  post()
-},[])
-//  let b;
-// let postM=name.map((item)=>{
-//   b=item
-//   return item
-// })
-
-console.log(name,"mmm");
 
 
   return (
     
     <div className="Post" ref={ref}>
-            {/* <h4>{name.firstname}</h4> */}
-    <img src={!saveItem?data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : "" :name.image ? process.env.REACT_APP_PUBLIC_FOLDER + name.image : ""} alt=""  />
+       <div style={{display:"flex"}}>
+        <img src={data.user[0]?.profilePicture ? serverPublic + data.user[0].profilePicture : serverPublic + "profile.png"} alt=""  className='followerImg'/>
+        <div className="name">
+            <span style={{paddingLeft:"10px"}}>{data.user[0]?.firstName+" "+data.user[0]?.lastName} </span> 
+        </div>
+    </div>
+   <img src={!saveItem?data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : "" :name.image ? process.env.REACT_APP_PUBLIC_FOLDER + name.image : ""} alt=""  />
 
     <div className="postReact">
         <img src={liked ? Heart : NotLike} alt="" style={{cursor:"pointer"}}  onClick={handleLike}/>

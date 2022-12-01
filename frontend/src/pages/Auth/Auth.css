@@ -93,7 +93,7 @@ input::-webkit-inner-spin-button {
 }
 .passInput{
     position: relative;
-    right: -20px;
+    right: -1px;
     width: 400px;
     bottom:-13px;
 }

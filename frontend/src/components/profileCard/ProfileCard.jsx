@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getTimelinePostsUser } from '../../api/PostRequest'
  import './ProfileCard.css'
 
 const ProfileCard = ({location,handleSavePost}) => {
@@ -12,17 +11,7 @@ const ProfileCard = ({location,handleSavePost}) => {
     const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
     const [userPosts,setUserPosts] = useState([])
 
-    // user posts
-    useEffect(()=>{
-        const posts = async() =>{
-            const {data} = await getTimelinePostsUser();
-            setUserPosts(data)
-            // console.log(data,"profile");
-    
-        }
-        posts()
-    },[])
-   
+   console.log(user);
 
 
   return (
@@ -39,7 +28,7 @@ const ProfileCard = ({location,handleSavePost}) => {
         <hr />
         <div>
             <div className="follow" >
-                <span>{user.following.length}</span>
+                <span>{user.following?.length}</span>
                 <span>Followings</span>
             </div>
             <div className="vl"></div>

@@ -22,7 +22,7 @@ const Posts = () => {
 
   useEffect(()=>{
     const posts = async() =>{
-        const {data} = await getAllPost();
+        const {data} = await getAllPost()
         setAllPosts(data)
          console.log(data);
 
@@ -33,15 +33,6 @@ const Posts = () => {
 
 
 
-
-
-  
-  // if (!posts) return " no posts";
-  // if(params.id){
-  //   posts = posts.map((post)=> post.userId === params.id)
-  // }
-
- 
  
   return (
     <div className="Posts">

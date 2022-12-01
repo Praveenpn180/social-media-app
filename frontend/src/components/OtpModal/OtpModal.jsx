@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Modal, useMantineTheme } from '@mantine/core';
 import { useForm } from "react-hook-form";
-import { verifyOtp } from '../../api/AuthRequest';
+import { verifyOtp } from '../../action/AuthAction';
 import { useDispatch} from 'react-redux'
 const OtpModal = ({ modalOpened, setModalOpened, num ,userData,setDatas}) => {
   const theme = useMantineTheme();

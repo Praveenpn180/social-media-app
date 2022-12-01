@@ -26,9 +26,6 @@ export const signUp = (formData) => async(dispatch) => {
       try {
           const {data} = await AuthApi.signUp(formData)
           
-         
-          
-  
       } catch (error) {
           console.log(error.response.data.message,"HHHHHHHHHHHH");
           alert(error.response.data.message)
@@ -39,8 +36,8 @@ export const signUp = (formData) => async(dispatch) => {
   export const verifyOtp = (formData) => async(dispatch) => {
     
       try {
-          const {data} = await AuthApi.verifyOtp(formData)
-          
+          const {data} = await AuthApi.verifyOtpData(formData)
+          console.log(data);
           dispatch({type :"AUTH_SUCCESS",data : data})
           
       } catch (error) {

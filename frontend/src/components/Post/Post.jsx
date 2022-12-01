@@ -84,7 +84,7 @@ const handleComment = async() => {
       <div style={{display:"flex"}}>
         <img src={data.user[0]?.profilePicture ? serverPublic + data.user[0].profilePicture : serverPublic + "profile.png"} alt=""  className='followerImg'/>
         <div className="name">
-            <span style={{paddingLeft:"10px"}}>{data.user[0]?.firstname+" "+data.user[0]?.lastname} </span> 
+            <span style={{paddingLeft:"10px"}}>{data.user[0]?.firstName+" "+data.user[0]?.lastName} </span> 
         </div>
     </div>
     {<time><DateFormatter date={data?.createdAt} /></time>}

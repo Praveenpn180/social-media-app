@@ -41,12 +41,10 @@ export const registerUser = async (req, res) => {
 
 
 export const otpVerification = async (req, res) => {
-    console.log(req);
     try {
         const { firstName, lastName, email, password, phone, otpcode } = req.body
 
         const optVerify = await verifyOtp(phone, otpcode)
-        console.log(optVerify+"hwdew");
         if (optVerify) {
             // Hash password
             const salt = await bcrypt.genSalt(10)
@@ -59,14 +57,10 @@ export const otpVerification = async (req, res) => {
             })
 
             if (user) {
-                return res.status(201).json({
-                    _id: user._id,
-                    firstName: user.firstName,
-                    lastName: user.lastName,
-                    email: user.email,
-                    phone: user.phone,
-                    token: generateTocken(user._id)
-                })
+                const token = jwt.sign({
+                    email : user.email, id: user._id
+                 }, process.env.JWT, { expiresIn: "5h" })
+                 res.status(200).json({ user, token ,message:"success"})
             }
         } else {
             return res.status(400).json({ message: 'Invalid OTP' })
@@ -82,10 +76,10 @@ export const otpVerification = async (req, res) => {
 //login user
 export const loginUser = async (req, res) => {
 
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     try {
-        const user = await UserModel.findOne({ username: username ,block:false})
+        const user = await UserModel.findOne({ email: email ,block:false})
 
         if (user) {
             const validity = await bcrypt.compare(password, user.password)
@@ -95,7 +89,7 @@ export const loginUser = async (req, res) => {
             } else {
                 //jwt create
                 const token = jwt.sign({
-                    username: user.username, id: user._id
+                   email : user.email, id: user._id
                 }, process.env.JWT, { expiresIn: "5h" })
                 res.status(200).json({ user, token ,message:"success"})
 

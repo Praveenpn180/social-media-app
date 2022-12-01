@@ -108,11 +108,10 @@ export const likePost = async (req, res) => {
 export const getTimelinePosts = async(req,res)=>{
 
    const userId = req.params.id;
-
    try {
     
     const currentUserPost = await PostModel.find({userId : userId})
-
+console.log(currentUserPost);
     const followingPosts = await UserModel.aggregate(
         [
             {
@@ -136,7 +135,8 @@ export const getTimelinePosts = async(req,res)=>{
                 }
             }
         ]
-    )
+    ).toArray()
+    console.log(followingPosts);
     res.status(200).json(currentUserPost.concat(...followingPosts[0].followingPosts)
     .sort((a,b)=>{
         return b.createdAt - a.createdAt; 
@@ -164,13 +164,12 @@ export const getAllPost = async(req,res) =>{
 
 // get only user posts
 export const getTimelinePostsUser = async(req,res) =>{
-    const userId = req.params.id
-    console.log(userId,"controller");
+  const userId = req.params.id
     try {
         let posts = await PostModel.find({userId:userId})
-        posts = posts.map((post)=>{
-            return post
-        })
+        .populate("user")
+        .sort({createdAt:-1})
+        
         res.status(200).json(posts)
     } catch (error) {
         res.status(500).json(error)

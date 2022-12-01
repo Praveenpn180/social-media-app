@@ -100,7 +100,7 @@ const unBlockUser = (userId) =>{
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.firstname}
+                {row.firstName}
               </TableCell>
               <TableCell align="left">{row.block?"Not Active" :"Active"}</TableCell>
               <TableCell align="left">report</TableCell>

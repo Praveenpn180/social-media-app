@@ -11,10 +11,7 @@ API.interceptors.request.use((req) => {
 
 
 export const getTimelinePosts = (id)=> API.get(`/post/${id}/timeline`);
-export const getTimelinePostsUser =() => {
-  let userId = JSON.parse(localStorage.getItem('profile')).user._id
-API.get(`/post/${userId}/usertimeline`)
-} 
+export const getTimelinePostsUser =(id) =>API.get(`/post/${id}/usertimeline`)
 export const likePost = (id,userId) => API.put(`/post/${id}/like`,{userId : userId})
 export const getAllPost = () =>API.get('/post')
 export const deletePost = (id,userId) => API.put(`/post/${id}/${userId}/delete`)

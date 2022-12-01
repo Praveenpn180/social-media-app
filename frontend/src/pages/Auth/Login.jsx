@@ -1,31 +1,23 @@
 import React from 'react'
+import { useForm } from "react-hook-form";
+
 import './Auth.css'
 import Zlogo from '../../img/Zlogo.jpg'
-import { useState } from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import { logIn} from '../../action/AuthAction'
-import Validate from '../../Validation/Validation'
 import { Link } from 'react-router-dom'
  const Login = () => {
+
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const dispatch = useDispatch()
     const loading = useSelector((state)=> state.authReducer.loading)
 
-    const [data,setData] = useState({password:"",email:""})
-    const [err,setErr] = useState({})
+
+  const onSubmit=async(data)=>{
+    dispatch(logIn(data))
+  }
   
-    //password check
-    const [confirmPass,setConfirmPass] = useState(true)
-  
-    const handleChange = (e) =>{
-        // const {name,value} = e.target
-           setData({...data , [e.target.name] : e.target.value})
-    }
-  
-  
-    const handleSubmit = (e)=>{
-       
-        dispatch(logIn(data))
-      }
+   
     
   
 
@@ -42,45 +34,39 @@ import { Link } from 'react-router-dom'
       </div>
    
       <div className="a-right">
-          <form  className="infoForm authForm" onSubmit={handleSubmit}>
+          <form  className="infoForm authForm" onSubmit={handleSubmit(onSubmit)}>
             <h3>Log In</h3>
         
 
          <div className='validation'>
-            <input type="text" placeholder='User Name'
+            <input type="text" placeholder='Email'
              className='infoInput passInput1' name='email' 
-             onChange={handleChange} value ={data.username} />
-            
-             {err.username && <p style={{color:"red"}}> {err.username}</p>}
+             {...register('email', {
+              required: 'Please enter email', pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: "Invalid email address"
+              }
+            })} />
+             {errors.email && <p className="errorMessage">{errors.email?.message}</p>}
+             
 
             </div>
-            <div>
+           
 
             <div className='validation'>
          
               <input 
                type="password" placeholder=' password'
               className='infoInput passInput' name='password' 
-
-              onChange={handleChange} value ={data.password}/>
-             {err.password && <p  style={{position:"relative",right:"-50px",color:"red"}}> {err.password}</p>}
+              {...register('password',
+              { required: 'Please enter password', minLength: { value: 8, message: 'Password must be 8 characters' } })} />
+                 {errors.password && <p className="errorMessage">{errors.password?.message}</p>}
 
             </div>
-            <span style={{display : confirmPass ? "none" : "block",
-            color:"red",fontSize:"12px",
-            alignSelf:"flex-end",
-            marginRight:"5px"}}>
+          
 
-            
 
-            </span>
-
-            <div className='validation'>
            
-             
-            </div>
-
-            </div>
           
             <div>
               <span style={{fontSize:'12px',cursor:"pointer"}} >
@@ -90,7 +76,7 @@ import { Link } from 'react-router-dom'
                 </span>
             </div>
             <button className='button infoButton' type='submit' >
-              {loading ? "Loading.." : "Login"}
+              Login
             </button>
           </form>
       </div>
