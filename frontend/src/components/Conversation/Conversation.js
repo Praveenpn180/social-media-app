@@ -4,12 +4,9 @@ import './Conversation.css'
 import {getUser} from '../../api/UserRequest.js'
 
 
-const Conversation = ({data,currentUser}) => {
-  console.log(currentUser);
-console.log(data);
+const Conversation = ({data,currentUser,online}) => {
     const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
     const [userData,setUserData] = useState(null)
-   console.log(5667);
 
  
    useEffect(()=> {
@@ -28,20 +25,20 @@ console.log(data);
     }
 
     getUserData();
-  }, [])
+  }, [currentUser,data.members])
 
   return (
     <>
    <div className="follower conversation">
       <div>
-      {/* <div className={online?"online-dot":''}></div> */}
-      <div className="online-dot"></div> 
+      <div className={online?"online-dot":''}></div>
+     
         <img src={userData?.profilePicture ? serverPublic + userData.profilePicture : serverPublic + "profile.png"} 
         alt="" className='followerImage' style={{width:"50px",hight:"50px"}}/>
         <div className="name" style={{fontSize:"0.8rem"}}>
-          <span>{userData?.firstname} {userData?.lastname}</span>
-          {/* <span style={{color: online?"#51e200":""}}>{online? "Online" : "Offline"}</span> */}
-          <span style={{color: "#51e200"}}>Online</span>
+          <span>{userData?.firstName} {userData?.lastName}</span>
+          <span style={{color: online?"#51e200":""}}>{online? "Online" : "Offline"}</span>
+        
         </div>
       </div>
    </div>

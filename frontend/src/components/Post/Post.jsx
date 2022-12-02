@@ -1,12 +1,10 @@
-import React,{useEffect, useRef} from 'react'
+import React,{ useRef} from 'react'
 import './Post.css'
 
 //import Comment from '../../img/comment.png'
 // import Share from '../../img/share.png'
 import Download from '../../img/download.png'
 import Completed from '../../img/completed.png'
-import Heart from '../../img/like.png'
-import NotLike from '../../img/notlike.png'
 import Delete from '../../img/delete.png'
 import DateFormatter from '../../utils/DateFormatter'
 import { useSelector } from 'react-redux'
@@ -16,7 +14,7 @@ import { likePost } from '../../api/PostRequest'
 import { deletePost } from "../../action/uploadAction";
 import { getComments } from '../../api/PostRequest'
 import  { useDispatch } from 'react-redux'
-import { getUser, savePost } from '../../api/UserRequest'
+import { savePost } from '../../api/UserRequest'
 import {
   Checkbox,
   IconButton,

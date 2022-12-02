@@ -4,7 +4,7 @@ import logo from '../../img/logo.png'
 import { UilSignOutAlt, UilBars } from '@iconscout/react-unicons'
 import { motion } from 'framer-motion'
 import { Link} from 'react-router-dom'
-import { UilEstate, UilUsersAlt, UilPackage, UilChart } from '@iconscout/react-unicons'
+import { UilEstate, UilUsersAlt} from '@iconscout/react-unicons'
 import {useDispatch} from 'react-redux'
 import { logOut } from '../../action/AuthAction'
 
@@ -82,30 +82,8 @@ const Sidebar = () => {
                             </div>
                     </div>
                         </Link>
-                        <Link to='/post' style={{textDecoration: 'none',color:"white"}}>
-                    <div className={selected === 2 ? 'menuItem active' : "menuItem"}
-                        onClick={() => { setSelected(2) }}
-                    >
-                        <div>
-                            <UilPackage />
-
-                        </div>
-                            <span >
-                            Posts
-                        </span>
-                    </div>
-                        </Link>
-                    <div className={selected === 3 ? 'menuItem active' : "menuItem"}
-                        onClick={() => { setSelected(3) }}
-                    >
-                        <div>
-                            <UilChart />
-
-                        </div>
-                        <span >
-                            Analytics
-                        </span>
-                    </div>
+                     
+                   
 
 
                     <div className="menuItem" onClick={handleLogout}>

@@ -2,7 +2,6 @@ import ChatModel from "../Models/ChatModal.js";
 
 
 export const createChat = async (req,res) => {
-    console.log(req.body);
     const newChat = new ChatModel(
         
         {

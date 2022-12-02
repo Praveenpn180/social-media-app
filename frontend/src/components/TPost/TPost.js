@@ -1,4 +1,4 @@
-import React,{useEffect, useRef} from 'react'
+import React,{ useRef} from 'react'
 import './TPost.css'
 
 import Comment from '../../img/comment.png'
@@ -9,7 +9,7 @@ import Delete from '../../img/delete.png'
 
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
-import { getPost, likePost } from '../../api/PostRequest'
+import {  likePost } from '../../api/PostRequest'
 import { deletePost } from "../../action/uploadAction";
 import  { useDispatch } from 'react-redux'
 
@@ -18,7 +18,6 @@ import  { useDispatch } from 'react-redux'
 
 const TPost = ({data,userId,saveItem}) => {
 
-  console.log(data,"tpost");
 
   const ref = useRef(null);
   const dispatch = useDispatch()
@@ -27,7 +26,6 @@ const TPost = ({data,userId,saveItem}) => {
 
   const [liked,setLiked] = useState(data.likes.includes(user._id))
   const [likes,setLikes] = useState(data.likes.length);
-  const [name,setName] = useState([])
 
 
   const handleLike = () =>{
@@ -56,7 +54,7 @@ const handleDelete = (postId,ref) =>{
             <span style={{paddingLeft:"10px"}}>{data.user[0]?.firstName+" "+data.user[0]?.lastName} </span> 
         </div>
     </div>
-   <img src={!saveItem?data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : "" :name.image ? process.env.REACT_APP_PUBLIC_FOLDER + name.image : ""} alt=""  />
+   <img src={!saveItem?data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : "" :""  } alt=""/>
 
     <div className="postReact">
         <img src={liked ? Heart : NotLike} alt="" style={{cursor:"pointer"}}  onClick={handleLike}/>

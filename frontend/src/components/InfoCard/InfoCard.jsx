@@ -3,18 +3,15 @@ import './InfoCard.css'
 import { UilPen } from '@iconscout/react-unicons'
 import { useState } from 'react'
 import ProfileModal from '../ProfileModal/ProfileModal'
-import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import {useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { logOut } from '../../action/AuthAction'
-
+import {getUser} from '../../api/UserRequest'
 const InfoCard = () => {
 
     const [modalOpened, setModalOpened] = useState(false)
 
     //redux
-    const dispatch = useDispatch()
-    const params = useParams()
+ 
 
     const [profileUser, setProfileUser] = useState({})
 
@@ -23,15 +20,14 @@ const InfoCard = () => {
 
     useEffect(() => {
         const fetchProfileUser = async () => {
-            setProfileUser(user)
+            const profileUserr = await getUser(user._id)
+            setProfileUser(profileUserr.data)
+          
         }
         fetchProfileUser();
     }, [user])
 
-    // logout
-    const handleLogOut = () => {
-        dispatch(logOut())
-    }
+   
 
     return (
         <div className="InfoCard">

@@ -65,13 +65,16 @@ const Chat = () => {
   // Get the message from socket server
   useEffect(() => {
     socket.current.on("recieve-message", (data) => {
-      console.log(data,"receive")
       setReceivedMessage(data);
     }
 
     );
   }, []);
-
+  const checkOnlineStatus = (chat) => {
+    const chatMember = chat.members.find((member) => member !== user._id);
+    const online = onlineUsers.find((user) => user.userId === chatMember);
+    return online ? true : false;
+  };
   return (
 
     <div className="Chat">
@@ -88,6 +91,7 @@ const Chat = () => {
                 <Conversation
                   data={chat}
                   currentUser={user._id}
+                  online={checkOnlineStatus(chat)}
                 />
               </div>
             ))}

@@ -10,38 +10,6 @@ import './Table.css'
 import { getAllUser, updateUserAdmin } from '../../api/UserRequest';
 import {useState,useEffect} from 'react'
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', "Approved", 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  
-];
-
-const makeStyles = (status) => {
-  if(status === "Approved"){
-    return{
-        background:'#E3F6DD',
-        color:"green"
-    }
-  }else if(status === "Pending"){
-    return{
-        background:'#dde5f6',
-        color:"red"
-    }
-  }else{
-    return{
-        background:'#8b8f3d',
-        color:"white"
-    }
-  }
-}
 
 export default function BasicTable() {
 
@@ -51,7 +19,6 @@ export default function BasicTable() {
     const fetchPersons = async() =>{
         const {data} = await getAllUser();
         setAllUsers(data)
-        console.log(data);
 
     }
     fetchPersons()
@@ -78,9 +45,9 @@ const unBlockUser = (userId) =>{
    
   return (
     <div className="Table">
-    <h2 >Recent</h2>
+    <h2 >Users</h2>
 
-    <TableContainer component={Paper} style={{boxShadow:"rgb(38, 57, 77) 0px 20px 30px -10px",marginTop:"200px"}}>
+    <TableContainer component={Paper} style={{boxShadow:"rgb(38, 57, 77) 0px 20px 30px -10px"}}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -94,9 +61,9 @@ const unBlockUser = (userId) =>{
           </TableRow>
         </TableHead>
         <TableBody>
-          {allUser.map((row) => (
+          {allUser.map((row,index) => (
             <TableRow
-              key={row.name}
+              key={index}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">

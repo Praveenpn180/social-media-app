@@ -44,14 +44,7 @@ const UserBox = styled(Box)(({ theme }) => ({
     display: "none",
   },
 }));
-const MobileMenu = styled(MenuIcon)(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  gap: "10px",
-  [theme.breakpoints.up("sm")]: {
-    display: "none",
-  },
-}));
+
 
 
   export default function Navbar() {

@@ -31,7 +31,7 @@ const navigate = useNavigate()
 
   return (
     <div className="friendlist">
-    <div>
+    <div className='frindlistbutton'>
         <img src={person.profilePicture ? serverPublic + person.profilePicture : serverPublic + "profile.png"} alt=""  className='followerImg'/>
         <div className="name">
             <span>{person.firstName} <img src={followerss>=2?badge:""} alt="" style={{width:"15px",hieght:"20px"}}/></span>
@@ -39,10 +39,12 @@ const navigate = useNavigate()
             <span>@{person.email}</span>
         </div>
     </div>
+    <div className='frindlistbutton'>
     <button className={following ? 'button fc-button UnfollowButton' : "button fc-button"} onClick={handleFollow}>
         {following? "unfollow" : " Follow"}
     </button>
      <button onClick={()=>{startaChat()}} className='messagebutton'>Message</button>
+     </div>
 </div>
   )
 }

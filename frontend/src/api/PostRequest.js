@@ -17,10 +17,4 @@ export const getAllPost = () =>API.get('/post')
 export const deletePost = (id,userId) => API.put(`/post/${id}/${userId}/delete`)
 export const getPost = (postId,data) => API.get(`/savedpost/${postId}/save`)
 export const getComments=(postId)=>API.get(`/comment/getcomment/${postId}`)
-export const commentPost=(data)=>{
-  // for (const [key, value] of data.entries()) { 
-  //   console.log(key, value);
-  //  }
- 
-  API.post(`/comment/addcomment`,data)
-}
+export const commentPost=(data)=> API.post(`/comment/addcomment`,data)

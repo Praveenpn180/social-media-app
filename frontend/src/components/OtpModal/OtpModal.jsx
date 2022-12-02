@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Modal, useMantineTheme } from '@mantine/core';
 import { useForm } from "react-hook-form";
 import { verifyOtp } from '../../action/AuthAction';
@@ -11,7 +11,7 @@ const OtpModal = ({ modalOpened, setModalOpened, num ,userData,setDatas}) => {
     justifyContent: "center",
   }
   const dispatch = useDispatch()
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
     const {otp} = data
 const regData ={

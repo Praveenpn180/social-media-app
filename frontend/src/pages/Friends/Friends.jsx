@@ -1,5 +1,4 @@
 import React from 'react'
-import User from '../../components/User/User'
 import Friend from '../../components/Friend/Friend'
 import { useEffect } from 'react'
 import { useState } from 'react'
@@ -20,7 +19,7 @@ useEffect(()=>{
 
     }
     fetchPersons()
-},[])
+},[user._id])
 
   return (
     <div className="friends">
@@ -28,8 +27,9 @@ useEffect(()=>{
     <RightSide/>
     <div className="people">
     <h3>Friends</h3>
-    {persons.map((person,id)=>{
-        if (person._id !== user._id) return <Friend person={person} key={id} />;
+    {persons.filter(person=>person._id !== user._id)
+    .map((person,id)=>{
+        return( <Friend person={person} key={id} />);
         
     })}
 </div>

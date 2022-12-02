@@ -3,12 +3,12 @@ import { useEffect } from 'react'
 import { addMessage, getMessages } from '../../api/messageRequest'
 import { getUser } from '../../api/UserRequest'
 import './ChatBox.css'
-import {format} from 'timeago.js'
 import InputEmoji from 'react-input-emoji'
 import { useRef } from 'react'
+import DateFormatter from '../../utils/DateFormatter'
 
 const ChatBox = ({ chat, currentUser,setSendMessage,receivedMessage }) => {
-  console.log(chat);
+  
 
     const [userData, setUserData] = useState(null)
     const [messages,setMessages] = useState([])
@@ -84,12 +84,11 @@ useEffect(()=>{
 
    // Receive Message from parent component
 useEffect(()=> {
-  console.log("Message Arrived: ", receivedMessage)
   if (receivedMessage !== null && receivedMessage?.chatId === chat._id) {
     setMessages([...messages, receivedMessage]);
   }
 
-},[receivedMessage])
+},[receivedMessage,chat,messages])
 
 
 //always scroll the last message
@@ -109,7 +108,7 @@ useEffect(()=>{
          alt="" className='followerImage' style={{width:"50px",hight:"50px"}}/>
                    <div className="name" style={{ fontSize: "0.9rem" }}>
                      <span>
-                       {userData?.firstname} {userData?.lastName}
+                       {userData?.firstName} {userData?.lastName}
                      </span>
                    </div>
                  </div>
@@ -127,14 +126,16 @@ useEffect(()=>{
                 <div className="chat-body">
                  
                  {messages.map((message)=>{
-                     return(
+                     return ( 
+                      
                         <>
                          <div ref={scroll} className={ message.senderId === currentUser 
                          ? "message own"
                          : "message"}>
  
                              <span>{message.text}</span>
-                             <span>{format(message.createdAt)}</span>
+                             {<span><DateFormatter date={message?.createdAt} /></span>}
+                            
                              
                         </div>
                         </>

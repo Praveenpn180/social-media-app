@@ -13,7 +13,6 @@ export const logIn = (formData) => async(dispatch) => {
 
     } catch (error) {
         alert(error.response.data.message)
-        console.log(error,"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
         dispatch({type : "AUTH_FAIL"})
     }
 }
@@ -24,10 +23,9 @@ export const signUp = (formData) => async(dispatch) => {
 
     dispatch({type : "AUTH_START"})
       try {
-          const {data} = await AuthApi.signUp(formData)
+           await AuthApi.signUp(formData)
           
       } catch (error) {
-          console.log(error.response.data.message,"HHHHHHHHHHHH");
           alert(error.response.data.message)
           dispatch({type : "AUTH_FAIL"})
       }
@@ -37,11 +35,9 @@ export const signUp = (formData) => async(dispatch) => {
     
       try {
           const {data} = await AuthApi.verifyOtpData(formData)
-          console.log(data);
           dispatch({type :"AUTH_SUCCESS",data : data})
           
       } catch (error) {
-          console.log(error.response.data.message,"HHHHHHHHHHHH");
           alert(error.response.data.message)
     
       }

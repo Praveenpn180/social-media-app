@@ -19,8 +19,7 @@
   overflow: hidden;
   color: var(--black);
   background:white;
-  padding: 1rem 1rem;
-
+  
 }
 .blur{
   position: absolute;

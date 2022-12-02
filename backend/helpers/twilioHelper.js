@@ -15,11 +15,9 @@ export const doSms = (phone) => {
             to: `+91${phone}`,
             channel: 'sms'
         }).then((resp) => {
-            console.log(resp);
             resp.valid = true
             resolve(resp)
         }).catch((err) => {
-            console.log(err);
             reject(err)
         })
     })

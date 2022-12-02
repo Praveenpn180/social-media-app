@@ -11,6 +11,6 @@ export const getTimelinePosts =(id)=> async(dispatch)=>{
         
     } catch (error) {
         dispatch({type:"RETREIVING_FAIL"})
-        console.log(error);
+       
     }
 }

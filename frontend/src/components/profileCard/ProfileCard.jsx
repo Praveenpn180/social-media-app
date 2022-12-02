@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
  import './ProfileCard.css'
+ import  {getAllPost } from '../../api/PostRequest.js'
 
 const ProfileCard = ({location,handleSavePost}) => {
-
+    const [posts,setPosts] = useState([])
     const {user} = useSelector((state) => state.authReducer.authData)
-    // const posts = useSelector((state)=>state.postReducer.posts)
     const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
-    const [userPosts,setUserPosts] = useState([])
-
-   console.log(user);
-
+    useEffect(()=>{
+        const postdata = async()=>{
+            const {data} = await getAllPost()
+            setPosts(data)
+        }
+        postdata()
+    },[])
+   
 
   return (
    <div className="ProfileCard">
@@ -21,7 +25,7 @@ const ProfileCard = ({location,handleSavePost}) => {
         <img src={user.profilePicture ? serverPublic + user.profilePicture : serverPublic + "profile.png"} alt="" />
     </div>
     <div className="ProfileName">
-        <span>{user.firstname} {user.lastname}</span>
+        <span>{user.firstName} {user.lastName}</span>
         <span>{user.worksAt ? user.worksAt : "Write about Your Self"}</span>
     </div>
     <div className="followStatus">
@@ -42,7 +46,7 @@ const ProfileCard = ({location,handleSavePost}) => {
 
                 </div>
                 <div className="follow">
-                    <span>{userPosts.length}</span>
+                <span>{posts.filter((post)=> post.userId === user._id).length}</span>
                     <span>Posts</span>
                 </div>
                 <div className="vl"></div>

@@ -6,13 +6,12 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { signUp } from '../../action/AuthAction'
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import OtpModal from '../../components/OtpModal/OtpModal'
 const Signup = () => {
   const navigate = useNavigate()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const dispatch = useDispatch()
-  const loading = useSelector((state) => state.authReducer.loading)
   const [modalOpened,setModalOpened] = useState(false)
 const [num,setNum] = useState()
 const [datas,setDatas] = useState()
@@ -21,7 +20,6 @@ let userData={}
     setDatas(data)
     const { firstName, lastName, email, phone, password } = data
     userData = { firstName, lastName, email, phone, password }
-    console.log(userData);
     setNum(phone.slice(6))
     setModalOpened(true)
     dispatch(signUp(userData))

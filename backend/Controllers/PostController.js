@@ -62,9 +62,7 @@ export const deletePost = async(req,res)=>{
     const id = req.params.id;
     const userId = req.params.userId;
 
-    // const {userId} = req.body;
-    // console.log(userId);
-
+ 
     try {
         
         const post = await PostModel.findById(id);
@@ -111,7 +109,6 @@ export const getTimelinePosts = async(req,res)=>{
    try {
     
     const currentUserPost = await PostModel.find({userId : userId})
-console.log(currentUserPost);
     const followingPosts = await UserModel.aggregate(
         [
             {
@@ -136,7 +133,6 @@ console.log(currentUserPost);
             }
         ]
     ).toArray()
-    console.log(followingPosts);
     res.status(200).json(currentUserPost.concat(...followingPosts[0].followingPosts)
     .sort((a,b)=>{
         return b.createdAt - a.createdAt; 

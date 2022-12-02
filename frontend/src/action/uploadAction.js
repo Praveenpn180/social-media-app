@@ -19,7 +19,6 @@ export const uploadPost = (data) => async(dispatch)=>{
         const newPost = await UploadApi.uploadPost(data);
         dispatch({type : "UPLOAD_SUCCESSFULL",data:newPost.data})
     } catch (error) {
-        console.log(error);   
         dispatch({type : "UPLOAD_FAILD"})
 
     }
@@ -31,7 +30,7 @@ export const deletePost = (postId,userId) => async(dispatch)=>{
     dispatch({type: "DELETE_START"})
 
     try {
-         const postD = await PostRequest.deletePost(postId,userId);
+          await PostRequest.deletePost(postId,userId);
          
     } catch (error) {
         console.log(error);   

@@ -17,14 +17,13 @@ const Posts = () => {
 
   useEffect(() => {
     dispatch(getTimelinePosts(user._id))
-  }, [])
+  }, [dispatch,user._id])
 
 
   useEffect(()=>{
     const posts = async() =>{
         const {data} = await getAllPost()
         setAllPosts(data)
-         console.log(data);
 
     }
     posts()

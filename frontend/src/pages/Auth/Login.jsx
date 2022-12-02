@@ -3,14 +3,13 @@ import { useForm } from "react-hook-form";
 
 import './Auth.css'
 import Zlogo from '../../img/Zlogo.jpg'
-import {useDispatch,useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import { logIn} from '../../action/AuthAction'
 import { Link } from 'react-router-dom'
  const Login = () => {
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit,  formState: { errors } } = useForm();
     const dispatch = useDispatch()
-    const loading = useSelector((state)=> state.authReducer.loading)
 
 
   const onSubmit=async(data)=>{

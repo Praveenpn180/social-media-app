@@ -1,7 +1,6 @@
 import { Modal, useMantineTheme } from '@mantine/core';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import './ProfileModal.css'
 import { uploadImage } from '../../action/uploadAction';
 import { updateUser } from '../../action/userAction';
@@ -14,7 +13,6 @@ const [formData,setFormData] = useState(others);
 const [profileImage,setProfileImage] = useState(null);
 const [coverImage,setCoverImage] = useState(null)
 const dispatch = useDispatch();
-const param = useParams()
 const {user} = useSelector((state)=> state.authReducer.authData)
  
 
@@ -60,17 +58,16 @@ const handleSubmit = (e) =>{
       UserData.coverPicture =fileName;
       try {
         dispatch(uploadImage(data))
-        console.log(data,"modallll");
         
       } catch (error) {
         console.log(error);
       }
 
     }
-    console.log("dsafkjshfsk");
-    dispatch(updateUser(param.id,UserData));
+    
+    dispatch(updateUser(user._id,UserData));
     setModalOpened(false)
-    data()
+    
 }
 
 
@@ -99,7 +96,7 @@ const handleSubmit = (e) =>{
 
             <input type="text"
              className="infoInput"
-              name='lastname'
+              name='lastName'
                placeholder='Last Name'
                onChange={handleChange}
                value ={formData.lastName}

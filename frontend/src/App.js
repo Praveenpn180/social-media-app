@@ -1,17 +1,15 @@
 import "./App.css"
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AdminRoute } from "./routes/AdminRoute";
-import { UserRoute } from "./routes/UserRoute";
+import { Allroutes } from "./routes/AllRoutes";
 
 function App() {
 
   return (
 
     <div className="App">
-      <BrowserRouter>
-        <UserRoute />
-        <AdminRoute />
-      </BrowserRouter>
+      
+        <Allroutes />
+      
+   
     </div>
   );
 }

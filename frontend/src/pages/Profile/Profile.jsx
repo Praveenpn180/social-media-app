@@ -13,7 +13,6 @@ const Profile = () => {
   const handleSavePost = (value) =>{
     setSavedItem((value) => !value)
   }
-      // console.log(saveItem);
   return (
     <div className="Profile">
       <Navbar/>

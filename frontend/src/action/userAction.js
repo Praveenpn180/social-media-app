@@ -1,6 +1,5 @@
 
 import * as UserApi from "../api/UserRequest.js"
-
 export const updateUser = (id,formData) => async(dispatch) =>{
    dispatch({type : "UPDATING_START"})
 

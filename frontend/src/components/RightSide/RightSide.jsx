@@ -1,6 +1,5 @@
 import React,{useState} from 'react'
 import './RightSide.css'
-import Homee from '../../img/home.png'
 import ShareModal from '../ShareModal/ShareModal'
 import {
   Fab ,
@@ -69,21 +68,14 @@ const RightSide = () => {
             <ListItemText primary="Profile" />
           </ListItemButton>
         </ListItem>
-        {/* <ListItem disablePadding>
-          <ListItemButton component="a" href="#simple-list">
-            <ListItemIcon>
-              <ModeNight />
-            </ListItemIcon>
-            <Switch onChange={e=>setMode(mode === "light" ? "dark" : "light")}/>
-          </ListItemButton>
-        </ListItem> */}
+    
       </List>
       <Tooltip
        onClick={()=> setModalOpened(true)}
         title="New Post"
         sx={{
-          position: "fixed",
-          bottom: "250px",
+          position: "relative",
+          
           left: { xs: "calc(50% - 25px)", md:"100px" },
         }}
       >

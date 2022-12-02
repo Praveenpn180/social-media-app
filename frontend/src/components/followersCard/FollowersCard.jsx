@@ -15,7 +15,6 @@ useEffect(()=>{
     const fetchPersons = async() =>{
         const {data} = await getAllUser();
         setPersons(data)
-        console.log(data);
 
     }
     fetchPersons()
@@ -24,9 +23,10 @@ useEffect(()=>{
 
   return (
     <div className="FollwerCard">
-        <h3>People you may know</h3>
-        {persons.map((person,id)=>{
-           if (person._id !== user._id) return <User person={person} key={id} />;
+        <h3>Peoples</h3>
+        {persons.filter(person=>person._id !== user._id)
+        .map((person,id)=>{
+           return <User person={person} key={id} />;
             
         })}
     </div>

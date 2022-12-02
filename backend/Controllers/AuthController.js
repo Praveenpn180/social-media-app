@@ -99,7 +99,7 @@ export const loginUser = async (req, res) => {
 
         } else {
             res.status(400).json({message:"User Does not exists"})
-            console.log("user blocked");
+           
            
         }
     } catch (error) {
